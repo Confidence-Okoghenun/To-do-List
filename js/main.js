@@ -10,7 +10,7 @@ for (let i = 0; i < spans.length; i++) {
   spans[i].addEventListener("click", function(event) {
     fadeOut(this.parentNode);
     event.stopPropagation();
-  });
+  }); 
 }
 function fadeOut(element) {
   var fadeEffect = setInterval(function() {
