@@ -14,7 +14,7 @@ for (let i = 0; i < spans.length; i++) {
 }
 
 function fadeOut(element) {
-  var fadeEffect = setInterval(function() {
+  let fadeEffect = setInterval(function() {
     if (!element.style.opacity) {
       element.style.opacity = 1;
     }
@@ -24,19 +24,22 @@ function fadeOut(element) {
     } else {
       element.style.opacity -= 0.1;
     }
-  }, 100);
+  }, 50);
 }
 
-document.querySelector("input[type=text]").addEventListener("keypress", function(event) {
+document
+  .querySelector("input[type=text]")
+  .addEventListener("keypress", function(event) {
     if (event.which === 13) {
       let todoText = this.value;
       this.value = "";
       let newTodo = document.createElement("li");
       let newSpan = document.createElement("span");
-      newSpan.textContent = "X ";
+      newSpan.innerHTML = '<i class="fa fa-trash"></i>';
       newTodo.innerHTML = todoText;
       newTodo.insertAdjacentElement("afterbegin", newSpan);
       document.querySelector("ul").appendChild(newTodo);
+
       newTodo.addEventListener("click", function() {
         this.classList.toggle("completed");
       });
@@ -47,3 +50,7 @@ document.querySelector("input[type=text]").addEventListener("keypress", function
       });
     }
   });
+
+document.querySelector(".fa-plus").addEventListener("click", function() {
+  document.querySelector("input[type=text]").classList.toggle("display");
+});
