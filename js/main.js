@@ -10,8 +10,9 @@ for (let i = 0; i < spans.length; i++) {
   spans[i].addEventListener("click", function(event) {
     fadeOut(this.parentNode);
     event.stopPropagation();
-  }); 
+  });
 }
+
 function fadeOut(element) {
   var fadeEffect = setInterval(function() {
     if (!element.style.opacity) {
@@ -25,3 +26,24 @@ function fadeOut(element) {
     }
   }, 100);
 }
+
+document.querySelector("input[type=text]").addEventListener("keypress", function(event) {
+    if (event.which === 13) {
+      let todoText = this.value;
+      this.value = "";
+      let newTodo = document.createElement("li");
+      let newSpan = document.createElement("span");
+      newSpan.textContent = "X ";
+      newTodo.innerHTML = todoText;
+      newTodo.insertAdjacentElement("afterbegin", newSpan);
+      document.querySelector("ul").appendChild(newTodo);
+      newTodo.addEventListener("click", function() {
+        this.classList.toggle("completed");
+      });
+
+      newSpan.addEventListener("click", function(event) {
+        fadeOut(this.parentNode);
+        event.stopPropagation();
+      });
+    }
+  });
